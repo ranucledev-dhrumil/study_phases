@@ -1,0 +1,77 @@
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env_/
+
+# ─── Node / JS ────────────────────────────────────────────
+node_modules/
+.next/
+.nuxt/
+*.tsbuildinfo
+
+# ─── Environment / Secrets ────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+
+# ─── Databases ────────────────────────────────────────────
+*.sqlite3
+*.db
+*.sqlite
+
+# ─── Logs ─────────────────────────────────────────────────
+*.log
+logs/
+log.txt
+filename.txt
+
+# ─── Test / Coverage ──────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ─── OS junk ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE / Editor ─────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+
+# ─── Binaries, Installers & Archives ─────────────────────
+*.exe
+*.zip
+*.rar
+*.7z
+*.msi
+
+# ─── Serialized ML models ────────────────────────────────
+# *.joblib  ← intentionally tracked (small file)
+*.pkl
+
+# ─── Tauri / Rust build outputs ──────────────────────────
+src-tauri/target/
+portable_dist/
+
+# ─── Word / Office docs (training notes — tracked) ───────
+# *.docx

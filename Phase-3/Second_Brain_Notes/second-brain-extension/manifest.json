@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Second Brain Quick Capture",
+  "version": "1.0.0",
+  "description": "Capture links and snippets to your local vault \u2014 private, offline, and account-free.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "nativeMessaging",
+    "notifications"
+  ],
+  "icons": {
+    "128": "icons/icon128.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxvhnsubFf7ifj/1Uuew12cKW1frmJ/y/3PsJ05tEB1K3kSXWC3sH3z0AzUcmN3E3SRGsFkm9+QUKkHpx8pKR5M5gUU2LAyAEXJIXEK33LoJ36XH12IfnlUHov+0iqBO3Nv4Jr5MJiz03YY2PvTYAd2B/jczlxzflmakYKAFntJzfARsOqhRVrZ48K9EqT7QiokvpR+ClCNZTIq/yAWDI6S83lvHbI/DlQeTJhKuXQL1bfLrKEF88wvf8PPDOU5t2vtpRyQhxyU03f1wQ6Dc97LTn/7qEOKiKfKQuvkBFgoHttQDHPgxHHaIcFVVAmtWvqfj8yKUight3OHlJYYfVlQIDAQAB"
+}

@@ -1,0 +1,318 @@
+:root {
+  --bg: #1b1b1f;
+  --card: #262630;
+  --text: #f0f0f0;
+  --muted: #9a9aa5;
+  --accent: #6c5ce7;
+  --danger: #e74c3c;
+  --success: #2ecc71;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1 { text-align: center; }
+
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+input, select, button {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #3a3a44;
+  background: #1e1e24;
+  color: var(--text);
+  width: 100%;
+  margin-top: 8px;
+}
+
+button {
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  margin-top: 12px;
+}
+
+button:hover { opacity: 0.9; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error-text {
+  color: var(--danger);
+  font-size: 14px;
+  margin-top: 6px;
+  min-height: 18px;
+}
+
+.fighter {
+  margin-bottom: 16px;
+}
+
+.fighter-name {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.health-bar-outer {
+  background: #3a3a44;
+  border-radius: 6px;
+  height: 16px;
+  overflow: hidden;
+}
+body {
+  overscroll-behavior: none;
+}
+.health-bar-inner {
+  height: 100%;
+  background: var(--success);
+  transition: width 0.3s ease;
+}
+
+.health-bar-inner.low { background: var(--danger); }
+#arenaWrapper:fullscreen #controlHint {
+  display: none;
+}
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+#battleLog {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#battleLog li {
+  padding: 4px 0;
+  border-bottom: 1px solid #3a3a44;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #3a3a44;
+}
+/* =========================================================
+   FULLSCREEN ARENA
+   ========================================================= */
+
+#arenaWrapper:fullscreen {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: #1b1b1f;
+
+  display: block;
+  overflow: hidden;
+}
+
+/* The battle card itself becomes invisible as a layout container */
+#arenaWrapper:fullscreen #battleCard {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+}
+
+/* Canvas fills the entire fullscreen viewport */
+#arenaWrapper:fullscreen #arenaCanvas {
+  display: block;
+
+  width: 100vw;
+  height: 100vh;
+
+  max-width: none;
+  max-height: none;
+
+  margin: 0;
+  padding: 0;
+
+  border-radius: 0;
+}
+
+/* Hide everything except the canvas */
+#arenaWrapper:fullscreen #fullscreenBtn,
+#arenaWrapper:fullscreen #controlHint,
+#arenaWrapper:fullscreen .card {
+  display: none !important;
+}
+
+/* Remove the fullscreen button's parent spacing */
+#arenaWrapper:fullscreen #battleCard > div:first-child {
+  display: none !important;
+}
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: var(--muted);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+nav a:hover { color: var(--text); }
+
+
+/* =========================================================
+   BATTLE CONTROLS
+   ========================================================= */
+
+.battle-top-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.battle-top-controls button {
+  width: auto;
+  padding: 8px 16px;
+}
+
+.quit-btn {
+  background: #8f3f52 !important;
+}
+
+.quit-btn:hover {
+  background: #a94a60 !important;
+}
+
+.battle-end-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.battle-end-controls button {
+  width: auto;
+  min-width: 140px;
+  padding: 10px 18px;
+}
+
+/* Fullscreen must contain ONLY the canvas */
+#arenaWrapper:fullscreen .battle-top-controls,
+#arenaWrapper:fullscreen .card,
+#arenaWrapper:fullscreen .hint {
+  display: none !important;
+}
+
+/* =========================================================
+   BATTLE END MODAL
+   ========================================================= */
+
+.battle-end-modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+}
+
+.battle-end-modal.show {
+  display: flex;
+}
+
+.battle-end-modal-content {
+  width: min(90%, 420px);
+
+  padding: 28px;
+
+  text-align: center;
+
+  background: #24242b;
+  border: 1px solid #444;
+  border-radius: 16px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.battle-end-modal-content h2 {
+  margin: 0 0 10px;
+  font-size: 32px;
+}
+
+.battle-end-modal-content p {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+.battle-end-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.battle-end-modal-buttons button {
+  width: auto;
+  min-width: 130px;
+  padding: 11px 20px;
+}
+
+.quit-btn {
+  background: #8f3f52 !important;
+}
+
+.quit-btn:hover {
+  background: #a94a60 !important;
+}
+
+
+/* =========================================================
+   FULLSCREEN MODAL
+   ========================================================= */
+
+/*
+   The canvas remains fullscreen during the battle.
+   The modal is allowed to appear on top of it after the
+   battle finishes.
+*/
+
+#arenaWrapper:fullscreen .battle-end-modal {
+  display: none;
+}
+
+#arenaWrapper:fullscreen .battle-end-modal.show {
+  display: flex;
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Applications</h1>
+    <ul>
+        {% for app in applications %}
+        <li>{{ app.company }} — {{ app.status }}</li>
+        {% else %}
+        <li>No applications yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!-- Remember we have two different kinds of templates.
+1. Shared project template - templates/base.html
+This is shared by the whole project.
+
+2. Application-specific template - applications/templates/applications/application_list.html
+This belongs specifically to the 'applications' app.
+
+That's why we're keeping them separate. -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Applications</h1>
+<a href="{% url 'create' %}">
+    Add Application
+</a>
+<ul>
+    {% for app in applications %}
+    <li>
+        <a href="{% url 'detail' app.pk %}">{{ app.company }} — {{ app.role }}</a>
+        <!-- We're not doing: <a href="/applications/5/"> - because hardcoding URLs is fragile.
+        Instead we're saying: "Django, find the URL named detail and give it this application's primary key."
+        For Application #5: { url 'detail' application.pk %} - becomes: /applications/5/ 
+        For Application #12: /applications/12/ - Django handles that automatically. -->
+
+        <span class="status">{{ app.get_status_display }}</span>
+    </li>
+    {% empty %}
+    <li>No applications yet.</li>
+<!-- This belongs to the for loop - It means:
+"If applications contains nothing, show this instead."
+
+So if the logged-in user has no applications:
+You don't have any applications yet.
+
+rather than showing a blank page. -->
+    {% endfor %}
+</ul>
+{% endblock %}

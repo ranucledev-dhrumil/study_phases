@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #faf9f6;
+  --bg-glow-1: rgba(201, 119, 46, 0.05);
+  --bg-glow-2: rgba(47, 158, 92, 0.04);
+  --surface: #ffffff;
+  --surface-raised: #f0eee8;
+  --border: #e5e2da;
+  --border-strong: #ddd9d0;
+  --text: #242229;
+  --text-heading: #1a1820;
+  --text-muted: #6b6875;
+  --text-faint: #a8a4ad;
+  --accent: #c9772e;
+  --accent-hover: #b5691f;
+  --accent-contrast: #ffffff;
+  --success: #2f9e5c;
+  --success-bg: #f4faf6;
+  --danger: #d8494f;
+}
+
+[data-theme="dark"] {
+  --bg: #15141a;
+  --bg-glow-1: rgba(232, 163, 61, 0.06);
+  --bg-glow-2: rgba(74, 222, 128, 0.04);
+  --surface: #1c1b23;
+  --surface-raised: #201f28;
+  --border: #2b2a35;
+  --border-strong: #322f3d;
+  --text: #eae8f0;
+  --text-heading: #f4f3f8;
+  --text-muted: #8b899c;
+  --text-faint: #6b6980;
+  --accent: #e8a33d;
+  --accent-hover: #f0b25c;
+  --accent-contrast: #15141a;
+  --success: #4ade80;
+  --success-bg: #1c2620;
+  --danger: #f0656b;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 0%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 85% 100%, var(--bg-glow-2), transparent 40%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 56px 20px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#themeToggle {
+  order: -1;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+#themeToggle button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+#themeToggle button:hover {
+  color: var(--text);
+  background: var(--surface-raised);
+}
+
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--text-heading);
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 4px;
+}
+
+h1::after {
+  content: "focus, one line at a time";
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--text-faint);
+  margin-top: 6px;
+  margin-bottom: 28px;
+}
+
+#taskCount {
+  order: 2;
+  width: 100%;
+  max-width: 480px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#taskCount::before {
+  content: "";
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--border);
+  background-image: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  background-repeat: no-repeat;
+  background-size: var(--progress, 0%) 100%;
+  transition: background-size 0.4s ease;
+}
+
+#taskForm {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 6px;
+}
+
+#taskInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+#taskInput::placeholder {
+  color: var(--text-faint);
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#taskForm button {
+  flex-shrink: 0;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+#taskForm button:hover {
+  background: var(--accent-hover);
+}
+
+#taskForm button:active {
+  transform: scale(0.97);
+}
+
+#taskForm button:focus-visible,
+#filterButtons button:focus-visible,
+.task-actions button:focus-visible,
+#deleteCompleted:focus-visible,
+#themeToggle button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#taskError {
+  display: block;
+  min-height: 16px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 480px;
+  color: var(--danger);
+  order: 1;
+}
+
+#filterButtons {
+  order: 3;
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface-raised);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+#filterButtons button {
+  flex: 1;
+  padding: 7px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+#filterButtons button:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+#filterButtons button.active-filter {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 500;
+}
+
+#taskList {
+  order: 5;
+  list-style: none;
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(36, 34, 41, 0.05);
+}
+
+#taskList:empty::after {
+  content: "nothing here yet - add your first task above";
+  display: block;
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 13px;
+  font-style: italic;
+}
+
+#taskList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px 14px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  border-left: 3px solid var(--border-strong);
+  transition: background 0.15s ease, border-color 0.2s ease;
+}
+
+#taskList li:last-child {
+  border-bottom: none;
+}
+
+#taskList li:hover {
+  background: var(--bg);
+}
+
+#taskList li.done {
+  border-left-color: var(--success);
+  background: var(--success-bg);
+}
+
+#taskList li.done .task-text {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.task-text {
+  flex: 1;
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+}
+
+.task-text::before {
+  content: "\25CB";  /* ○ hollow circle */
+  display: inline-block;
+  width: 18px;
+  flex-shrink: 0;
+  color: var(--text-faint);
+  transition: color 0.15s ease;
+}
+
+#taskList li.done .task-text::before {
+  content: "\2713";  /* ✓ checkmark */
+  color: var(--success);
+}
+
+#taskList li.done .tick-btn:hover {
+  background: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.task-actions button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  padding: 6px 10px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.task-actions button:active {
+  transform: scale(0.92);
+}
+
+.tick-btn:hover {
+  background: var(--success);
+  color: #ffffff;
+  border-color: var(--success);
+}
+
+.edit-btn:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: #ffffff;
+  border-color: var(--danger);
+}
+
+#taskList li input[type="text"] {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+}
+
+#taskList li input[type="text"]:focus {
+  outline: none;
+}
+
+#deleteCompleted {
+  order: 4;
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 480px;
+  padding: 8px 12px;
+  border: 1px dashed var(--border-strong);
+  background: transparent;
+  color: var(--text-faint);
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-align: right;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+#deleteCompleted:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  width: 90%;
+  max-width: 340px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.modal-box p {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-cancel {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.modal-confirm {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+@media (max-width: 400px) {
+  body { padding: 32px 16px; }
+  h1 { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

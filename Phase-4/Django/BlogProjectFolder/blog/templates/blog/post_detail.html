@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+</head>
+
+<body>
+
+    <p>
+        <a href="{% url 'post_list' %}">← Back to all posts</a>
+    </p>
+
+    <article>
+        <h1>{{ post.title }}</h1>
+
+        <p>
+            By {{ post.author.username }}
+        </p>
+
+        <p>
+            Published: {{ post.created_at }}
+        </p>
+
+        {% if post.updated_at != post.created_at %}
+        <p>
+            Updated: {{ post.updated_at }}
+        </p>
+        {% endif %}
+
+        <hr>
+
+        <div>
+            {{ post.content|linebreaks }}
+        </div>
+    </article>
+
+    {% if post.author == request.user %}
+    <a href="{% url 'post_edit' post.pk %}">
+        Edit Post
+    </a>
+    {% endif %}
+    <hr>
+    {% if post.author == request.user %}
+    <a href="{% url 'post_delete' post.pk %}">
+        Delete Post
+    </a>
+    {% endif %}
+
+    <hr>
+
+    <h2>Comments</h2>
+
+    {% if post.comments.all %}
+    {% for comment in post.comments.all %}
+    <article>
+        <p>
+            <strong>{{ comment.author.username }}</strong>
+            · {{ comment.created_at }}
+        </p>
+
+        <p>{{ comment.content|linebreaks }}</p>
+    </article>
+
+    <hr>
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+    {% else %}
+    <p>No comments yet.</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <h3>Leave a comment</h3>
+
+    <form method="POST" action="{% url 'comment_create' post.pk %}">
+        {% csrf_token %}
+
+        {{ comment_form.as_p }}
+
+        <button type="submit">Add Comment</button>
+    </form>
+    {% else %}
+    <p>
+        <a href="{% url 'login' %}">Log in</a>
+        to leave a comment.
+    </p>
+    {% endif %}
+</body>
+
+</html>

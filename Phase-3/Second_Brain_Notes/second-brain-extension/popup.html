@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Brain</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main id="root">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div>
+        <h1>Second Brain</h1>
+        <p>Quick capture, stored locally.</p>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button id="tab-capture-btn" class="tab-btn active" type="button">Capture</button>
+      <button id="tab-vault-btn" class="tab-btn" type="button">
+        Vault <span id="vault-count" class="count-badge">0</span>
+      </button>
+    </nav>
+
+    <section id="capture-view" class="view">
+      <div id="draft-banner" class="draft-banner hidden" role="status">
+        <div>
+          <strong>Unsaved draft</strong>
+          <span>Restored from your last session.</span>
+        </div>
+        <button id="discard-draft-btn" type="button">Discard</button>
+      </div>
+
+      <div class="type-toggle" role="group" aria-label="Capture type">
+        <button id="type-link-btn" class="type-btn active" type="button" data-type="link">
+          <span aria-hidden="true">↗</span> Link
+        </button>
+        <button id="type-snippet-btn" class="type-btn" type="button" data-type="snippet">
+          <span aria-hidden="true">&lt;/&gt;</span> Snippet
+        </button>
+      </div>
+
+      <div id="link-fields">
+        <label class="field">
+          <span>Title</span>
+          <input id="link-title" type="text" placeholder="Give this link a name" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span>URL</span>
+          <input id="link-url" type="text" readonly aria-label="Current page URL" />
+        </label>
+        <label class="field">
+          <span>Description <em>optional</em></span>
+          <textarea id="link-description" rows="3" placeholder="Why is this worth remembering?"></textarea>
+        </label>
+      </div>
+
+      <div id="snippet-fields" class="hidden">
+        <label class="field">
+          <span>Title <em>optional</em></span>
+          <input id="snippet-title" type="text" placeholder="What is this snippet about?" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span>Text / code</span>
+          <textarea id="snippet-code" rows="7" placeholder="Paste code or selected text here"></textarea>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Tags <em>optional</em></span>
+        <input id="item-tags" type="text" placeholder="design, javascript, ideas" autocomplete="off" />
+      </label>
+
+      <button id="save-item-btn" class="primary-btn" type="button">
+        <span aria-hidden="true">＋</span> Save to Vault
+      </button>
+      <p id="capture-status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section id="vault-view" class="view hidden">
+      <div class="vault-toolbar">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="vault-search" type="search" placeholder="Search titles, tags, content..." autocomplete="off" />
+        </label>
+        <select id="vault-filter" aria-label="Filter vault">
+          <option value="all">All</option>
+          <option value="link">Links</option>
+          <option value="snippet">Snippets</option>
+        </select>
+      </div>
+      <div id="vault-list"></div>
+    </section>
+
+    <div id="item-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <span id="modal-type" class="modal-kicker">ITEM</span>
+            <h2 id="modal-title">Edit item</h2>
+          </div>
+          <button id="close-modal-btn" class="icon-btn" type="button" aria-label="Close">×</button>
+        </div>
+
+        <label class="field">
+          <span>Title</span>
+          <input id="edit-title" type="text" autocomplete="off" />
+        </label>
+
+        <div id="edit-url-wrap">
+          <label class="field">
+            <span>URL</span>
+            <input id="edit-url" type="text" />
+          </label>
+        </div>
+
+        <div id="edit-description-wrap">
+          <label class="field">
+            <span>Description</span>
+            <textarea id="edit-description" rows="3"></textarea>
+          </label>
+        </div>
+
+        <div id="edit-code-wrap">
+          <label class="field">
+            <span>Text / code</span>
+            <textarea id="edit-code" rows="8"></textarea>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Tags</span>
+          <input id="edit-tags" type="text" placeholder="tag1, tag2" autocomplete="off" />
+        </label>
+
+        <p id="edit-status" class="status" aria-live="polite"></p>
+        <div class="modal-actions">
+          <button id="cancel-edit-btn" class="secondary-btn" type="button">Cancel</button>
+          <button id="save-edit-btn" class="primary-btn compact" type="button">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "faq-0",
+    "question": "How do I reset my password?",
+    "answer": "Go to Settings > Account > Reset Password and follow the email link."
+  },
+  {
+    "id": "faq-1",
+    "question": "Why is my app crashing on startup?",
+    "answer": "Try clearing the app cache, restarting your device, or reinstalling the latest version."
+  },
+  {
+    "id": "faq-2",
+    "question": "How do I connect to Wi-Fi?",
+    "answer": "Open Settings > Network, select your Wi-Fi network, and enter the password."
+  },
+  {
+    "id": "faq-3",
+    "question": "Why can't I sign in to my account?",
+    "answer": "Check that your email and password are correct, then try resetting your password if needed."
+  },
+  {
+    "id": "faq-4",
+    "question": "How do I change the email address on my account?",
+    "answer": "Open Settings > Account > Email and enter your new email address, then verify it using the confirmation message."
+  },
+  {
+    "id": "faq-5",
+    "question": "Why is my internet connection so slow?",
+    "answer": "Restart your router, move closer to the access point, and disconnect unused devices from the network."
+  },
+  {
+    "id": "faq-6",
+    "question": "How do I update the app?",
+    "answer": "Open your device's app store, search for the app, and select Update if a newer version is available."
+  },
+  {
+    "id": "faq-7",
+    "question": "Why am I not receiving verification emails?",
+    "answer": "Check your spam or junk folder and confirm that the email address on your account is correct."
+  },
+  {
+    "id": "faq-8",
+    "question": "How do I cancel my subscription?",
+    "answer": "Go to Settings > Billing > Subscription and select Cancel Subscription, then follow the confirmation steps."
+  },
+  {
+    "id": "faq-9",
+    "question": "Why was I charged twice for the same subscription?",
+    "answer": "Check your billing history for duplicate transactions and contact support with the transaction details if both charges remain."
+  },
+  {
+    "id": "faq-10",
+    "question": "How do I download an invoice?",
+    "answer": "Open Settings > Billing > Invoices, select the transaction, and choose Download Invoice."
+  },
+  {
+    "id": "faq-11",
+    "question": "Why is the app running slowly?",
+    "answer": "Close unused apps, restart your device, clear the app cache, and make sure you have enough free storage."
+  },
+  {
+    "id": "faq-12",
+    "question": "How do I enable two-factor authentication?",
+    "answer": "Go to Settings > Security > Two-Factor Authentication and follow the setup instructions."
+  },
+  {
+    "id": "faq-13",
+    "question": "What should I do if I forgot my username?",
+    "answer": "Use the account recovery option on the sign-in screen and enter the email address associated with your account."
+  },
+  {
+    "id": "faq-14",
+    "question": "Why are notifications not appearing?",
+    "answer": "Check that notifications are enabled for the app in your device settings and that the app is allowed to run in the background."
+  },
+  {
+    "id": "faq-15",
+    "question": "How do I free up storage used by the app?",
+    "answer": "Open the app's storage settings and clear cached files or remove downloaded content you no longer need."
+  },
+  {
+    "id": "faq-16",
+    "question": "Why is my payment method being declined?",
+    "answer": "Verify that your card details and billing address are correct and that the card has not expired or reached its limit."
+  },
+  {
+    "id": "faq-17",
+    "question": "How do I change my notification preferences?",
+    "answer": "Open Settings > Notifications and choose which alerts you want to receive."
+  },
+  {
+    "id": "faq-18",
+    "question": "Why can't I upload a file?",
+    "answer": "Check your internet connection, confirm that the file type and size are supported, and try uploading the file again."
+  },
+  {
+    "id": "faq-19",
+    "question": "How do I contact technical support?",
+    "answer": "Open Help > Contact Support in the app and submit a support request with a description of the issue."
+  }
+]

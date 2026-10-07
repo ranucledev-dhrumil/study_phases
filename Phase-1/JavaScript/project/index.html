@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Task Manager</h1>
+  <div id="themeToggle">
+    <button id="themeToggleBtn">Dark Mode</button>
+  </div>
+  <form id="taskForm">
+    <input type="text" id="taskInput" placeholder="Enter a task..." />
+    <button type="submit">Add Task</button>
+  </form>
+  <span id="taskError" style="color: red;"></span>
+
+  <div id="filterButtons">
+    <button data-filter="all">All</button>
+    <button data-filter="active">Active</button>
+    <button data-filter="completed">Completed</button>
+  </div>
+
+  <p id="taskCount"></p>
+  <button id="deleteCompleted">Delete All Completed</button>
+
+  <ul id="taskList"></ul>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

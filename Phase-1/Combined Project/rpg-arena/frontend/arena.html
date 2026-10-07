@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>RPG Arena — Battle</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        #arenaCanvas {
+            display: block;
+            width: 680px;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+
+            background: linear-gradient(to bottom,
+                    #2b2540 0%,
+                    #3a2f4d 60%,
+                    #1e1a2e 100%);
+
+            border-radius: 10px;
+        }
+
+        .hint {
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="arena.html">Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="index.html" id="logoutLink">Log out</a>
+    </nav>
+
+    <h1>RPG Arena</h1>
+    <div id="arenaWrapper">
+        <div class="card" id="setupCard">
+            <h2>Choose difficulty</h2>
+            <select id="difficultySelect">
+                <option value="Easy">Easy</option>
+                <option value="Normal" selected>Normal</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <h2>Choose your class</h2>
+            <select id="classSelect">
+                <option value="warrior">Warrior</option>
+                <option value="mage">Mage</option>
+                <option value="healer">Healer</option>
+            </select>
+            <div class="error-text" id="setupError"></div>
+            <button id="startBattleBtn">Start Battle</button>
+        </div>
+
+        <div id="battleCard" style="display:none;">
+            <div class="battle-top-controls">
+                <button id="fullscreenBtn">Fullscreen</button>
+                <button id="quitBattleBtn" class="quit-btn">Quit</button>
+            </div>
+            <canvas id="arenaCanvas" width="680" height="320"></canvas>
+            <p class="hint" id="controlHint">SPACE = Attack &nbsp; F = Special &nbsp; (or use the buttons)</p>
+
+            <div class="card">
+                <div class="actions">
+                    <button id="attackBtn">Attack (Space)</button>
+                    <button id="spellBtn">Spell (F)</button>
+                    <button id="healBtn">Heal (F)</button>
+                </div>
+
+                <h3>Battle Log</h3>
+                <ul id="battleLog"></ul>
+
+                <div id="battleEndControls" class="battle-end-controls" style="display:none;">
+                    <button id="rematchBtn">⚔️ Rematch</button>
+                    <button id="endBattleBtn" class="quit-btn">Quit to Setup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle End Modal -->
+        <div id="battleEndModal" class="battle-end-modal">
+            <div class="battle-end-modal-content">
+                <h2 id="battleEndTitle">You Won!</h2>
+
+                <p id="battleEndMessage">
+                    The enemy has been defeated.
+                </p>
+
+                <div class="battle-end-modal-buttons">
+                    <button id="rematchModalBtn">
+                        ⚔️ Rematch
+                    </button>
+
+                    <button id="quitModalBtn" class="quit-btn">
+                        🚪 Quit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/battle.js"></script>
+</body>
+
+</html>

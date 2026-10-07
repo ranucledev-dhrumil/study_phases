@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    <h1>Blog Posts</h1>
+    <span><a href="{% url 'post_create' %}">Create Post</a></span>
+
+    {% if posts %}
+    {% for post in posts %}
+    <article>
+        <h2>
+            <a href="{% url 'post_detail' post.pk %}">
+                {{ post.title }}
+            </a>
+        </h2>
+
+        <p>
+            By {{ post.author.username }}
+            · {{ post.created_at }}
+        </p>
+
+        <p>{{ post.content|truncatewords:40 }}</p>
+
+        <a href="{% url 'post_detail' post.pk %}">
+            Read more
+        </a>
+    </article>
+
+    <hr>
+    {% endfor %}
+    {% else %}
+    <p>No posts have been published yet.</p>
+    {% endif %}
+
+    {% if is_paginated %}
+    <div>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">
+            Previous
+        </a>
+        {% endif %}
+
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">
+            Next
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+
+    <!--This sends a GET request -->
+    <!-- <a href="{% url 'logout' %}">Logout</a> -->
+
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+
+</html>

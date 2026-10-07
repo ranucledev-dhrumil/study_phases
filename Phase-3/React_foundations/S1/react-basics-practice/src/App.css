@@ -1,0 +1,20 @@
+.hero {
+  position: relative;
+  display: flex;
+  border: 2px solid red;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.cards {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid blue;
+  padding: 2px;
+  margin: 4px;
+}
+
+.spanclass{
+  color: red;
+}

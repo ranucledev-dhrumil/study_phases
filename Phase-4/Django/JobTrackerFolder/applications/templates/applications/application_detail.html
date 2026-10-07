@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ application.company }}</h1>
+
+<p>
+    <strong>Role:</strong>
+    {{ application.role }}
+</p>
+
+<p>
+    <strong>Status:</strong>
+    {{ application.get_status_display }}
+</p>
+
+<p>
+    <strong>Date applied:</strong>
+    {{ application.date_applied }}
+</p>
+<a href="{% url 'edit' application.pk %}">
+    Edit Application
+</a>
+
+<h2>Notes</h2>
+
+{% for note in notes %}
+ <div>
+        <p>{{ note.content }}</p>
+
+        {% if note.follow_up_date %}
+            <p>
+                Follow up:
+                {{ note.follow_up_date }}
+            </p>
+        {% endif %}
+
+        <small>
+            Created: {{ note.created_at }}
+        </small>
+    </div>
+
+{% empty %}
+
+    <p>No notes for this application.</p>
+
+{% endfor %}
+
+<h2>Add a Note</h2>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ note_form.as_p }}
+
+    <button type="submit">
+        Add Note
+    </button>
+
+</form>
+
+{% endblock %}
