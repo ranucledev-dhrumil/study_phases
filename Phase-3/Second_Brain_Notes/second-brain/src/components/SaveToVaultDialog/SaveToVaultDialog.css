@@ -1,0 +1,105 @@
+/* SaveToVaultDialog */
+.stvd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.stvd-dialog {
+  background: var(--sb-surface-elevated);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-lg);
+  padding: var(--sb-space-5);
+  width: 360px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.stvd-title {
+  font-size: var(--sb-font-size-lg);
+  font-weight: var(--sb-font-weight-semibold);
+  color: var(--sb-text-primary);
+  margin: 0 0 var(--sb-space-1) 0;
+}
+
+.stvd-subtitle {
+  font-size: var(--sb-font-size-sm);
+  color: var(--sb-text-secondary);
+  margin: 0 0 var(--sb-space-4) 0;
+}
+
+.stvd-label {
+  display: block;
+  font-size: var(--sb-font-size-sm);
+  font-weight: var(--sb-font-weight-medium);
+  color: var(--sb-text-secondary);
+  margin-bottom: var(--sb-space-1);
+}
+
+.stvd-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--sb-surface-app);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-md);
+  padding: var(--sb-space-2) var(--sb-space-3);
+  font-size: var(--sb-font-size-base);
+  font-family: var(--sb-font-family);
+  color: var(--sb-text-primary);
+  outline: none;
+  transition: border-color var(--sb-transition-fast);
+}
+
+.stvd-input:focus {
+  border-color: var(--sb-accent);
+}
+
+.stvd-error {
+  font-size: var(--sb-font-size-sm);
+  color: var(--sb-danger, #d73a49);
+  margin: var(--sb-space-2) 0 0;
+}
+
+.stvd-actions {
+  display: flex;
+  gap: var(--sb-space-2);
+  justify-content: flex-end;
+  margin-top: var(--sb-space-4);
+}
+
+.stvd-btn {
+  padding: var(--sb-space-2) var(--sb-space-4);
+  border-radius: var(--sb-radius-md);
+  font-size: var(--sb-font-size-sm);
+  font-family: var(--sb-font-family);
+  font-weight: var(--sb-font-weight-medium);
+  cursor: pointer;
+  border: none;
+  transition: background var(--sb-transition-fast), opacity var(--sb-transition-fast);
+}
+
+.stvd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stvd-btn--secondary {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text-primary);
+}
+
+.stvd-btn--secondary:hover:not(:disabled) {
+  background: var(--sb-surface-elevated);
+}
+
+.stvd-btn--primary {
+  background: var(--sb-accent);
+  color: #fff;
+}
+
+.stvd-btn--primary:hover:not(:disabled) {
+  opacity: 0.88;
+}

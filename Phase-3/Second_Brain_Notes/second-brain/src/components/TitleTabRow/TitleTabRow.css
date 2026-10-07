@@ -1,0 +1,248 @@
+/* TitleTabRow — Combined app icon, switcher, tabs, and window controls */
+
+.title-tab-row {
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--sb-surface-app); /* Matches titlebar surface */
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── 1. Left (Icon + Switcher) ────────────────────────────────── */
+.title-tab-row__left {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-4);
+  padding: 0 var(--sb-space-3);
+  height: 100%;
+}
+
+.title-tab-row__icon {
+  font-size: 14px;
+  font-weight: var(--sb-font-weight-bold);
+  color: var(--sb-text-primary);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--sb-accent);
+  color: var(--sb-accent-text);
+  border-radius: var(--sb-radius-sm);
+  pointer-events: none; /* Let drag events pass through */
+}
+
+/* Switcher (relocated from StatusBar) */
+.title-tab-row__switcher {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: var(--sb-radius-full);
+  gap: 2px;
+}
+
+.title-tab-row__switch-btn {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-family: var(--sb-font-family);
+  font-weight: var(--sb-font-weight-medium);
+  color: var(--sb-text-muted);
+  padding: 4px 12px;
+  border-radius: var(--sb-radius-full);
+  cursor: pointer;
+  line-height: 1.4;
+  transition: all var(--sb-transition-fast);
+}
+
+.title-tab-row__switch-btn:hover {
+  color: var(--sb-text-primary);
+  background: var(--sb-surface-hover);
+}
+
+.title-tab-row__switch-btn--active {
+  color: var(--sb-text-primary);
+  font-weight: var(--sb-font-weight-bold);
+  background: var(--sb-surface-hover);
+}
+
+/* ── 2. Tabs Container ────────────────────────────────────────── */
+.title-tab-row__tabs {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sb-space-2);
+  gap: 2px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  scrollbar-width: none;
+}
+.title-tab-row__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.title-tab-row__tabs--hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Individual tab (retained from TabStrip) ──────────────────── */
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  height: 32px;
+  padding: 0 var(--sb-space-2) 0 var(--sb-space-3);
+  min-width: 120px;
+  max-width: 220px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--sb-text-secondary);
+  font-family: var(--sb-font-family);
+  font-size: var(--sb-font-size-sm);
+  user-select: none;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(--sb-radius-md);
+  transition: background var(--sb-transition-fast), color var(--sb-transition-fast);
+}
+
+.tab:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text-primary);
+}
+
+.tab--active {
+  color: var(--sb-text-primary);
+  background: var(--sb-surface-elevated);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-weight: var(--sb-font-weight-medium);
+}
+.tab--active:hover {
+  background: var(--sb-surface-elevated);
+}
+
+.tab--dragging {
+  opacity: 0.5;
+}
+
+.tab__label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.tab__rename-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--sb-accent);
+  color: var(--sb-text-primary);
+  font: inherit;
+  outline: none;
+  padding: 0;
+}
+
+.tab__indicator {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.tab__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--sb-radius-full);
+  background: var(--sb-dot);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--sb-transition-fast);
+}
+
+.tab__close {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--sb-text-secondary);
+  border-radius: var(--sb-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--sb-transition-fast), background var(--sb-transition-fast), color var(--sb-transition-fast);
+}
+
+.tab:hover .tab__close { opacity: 1; }
+.tab:hover .tab__dot { opacity: 0; }
+.tab__close:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text-primary);
+}
+
+.title-tab-row__add {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  margin-left: var(--sb-space-1);
+  background: transparent;
+  border: none;
+  border-radius: var(--sb-radius-sm);
+  color: var(--sb-text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--sb-transition-fast), color var(--sb-transition-fast);
+}
+
+.title-tab-row__add:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text-primary);
+}
+
+/* ── 3. Window Controls (retained from TitleBar) ──────────────── */
+.titlebar__controls {
+  display: flex;
+  height: 100%;
+}
+
+.titlebar__btn {
+  background: transparent;
+  border: none;
+  color: var(--sb-text-primary);
+  width: 46px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--sb-transition-fast);
+}
+
+.titlebar__btn:hover {
+  background: var(--sb-surface-hover);
+}
+
+.titlebar__btn--close:hover {
+  background: var(--sb-close-hover-bg);
+  color: #fff;
+}

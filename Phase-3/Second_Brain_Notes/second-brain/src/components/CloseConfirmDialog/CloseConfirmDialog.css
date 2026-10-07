@@ -1,0 +1,117 @@
+/* CloseConfirmDialog — modal overlay (CHANGE 09) */
+
+/* Full-screen semi-transparent overlay */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sb-z-modal); /* 200 */
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dialog box */
+.dialog {
+  background: var(--sb-surface-elevated);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-lg);
+  padding: var(--sb-space-6);
+  width: 400px;
+  max-width: calc(100vw - var(--sb-space-8));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Large title — Windows 11 Notepad style */
+.dialog__title {
+  margin: 0 0 var(--sb-space-2) 0;
+  font-size: var(--sb-font-size-xl);
+  font-weight: var(--sb-font-weight-semibold);
+  color: var(--sb-text-primary);
+  line-height: var(--sb-line-height-tight);
+}
+
+/* Small description text */
+.dialog__description {
+  margin: 0 0 var(--sb-space-5) 0;
+  font-size: var(--sb-font-size-sm);
+  color: var(--sb-text-secondary);
+  line-height: var(--sb-line-height-base);
+}
+
+/* Tab name emphasis within description */
+.dialog__tab-name {
+  font-weight: var(--sb-font-weight-medium);
+  color: var(--sb-text-primary);
+}
+
+/* Button row — right-aligned */
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sb-space-2);
+}
+
+/* Base button */
+.dialog__btn {
+  padding: 0 var(--sb-space-4);
+  height: 32px;
+  border-radius: var(--sb-radius-sm);
+  font: inherit;
+  font-size: var(--sb-font-size-sm);
+  font-weight: var(--sb-font-weight-medium);
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background var(--sb-transition-fast), color var(--sb-transition-fast),
+    border-color var(--sb-transition-fast);
+}
+
+/* Primary — accent fill (Save to Vault) */
+.dialog__btn--primary {
+  background: var(--sb-accent);
+  color: var(--sb-accent-text);
+  border-color: rgba(0,0,0,0.1);
+}
+.dialog__btn--primary:hover {
+  background: var(--sb-accent-hover);
+  border-color: var(--sb-accent-hover);
+}
+.dialog__btn--primary:active {
+  background: var(--sb-accent-active);
+  border-color: var(--sb-accent-active);
+}
+
+/* Secondary — neutral outline (Close) */
+.dialog__btn--secondary {
+  background: transparent;
+  color: var(--sb-text-primary);
+  border-color: var(--sb-border-default);
+}
+.dialog__btn--secondary:hover {
+  background: var(--sb-surface-hover);
+}
+
+/* Ghost — minimal (Cancel) */
+.dialog__btn--ghost {
+  background: transparent;
+  color: var(--sb-text-secondary);
+  border-color: transparent;
+}
+.dialog__btn--ghost:hover {
+  color: var(--sb-text-primary);
+  background: var(--sb-surface-hover);
+}
+
+/* Inline error — shown when vault promotion fails */
+.dialog__error {
+  margin: var(--sb-space-3) 0 0 0;
+  font-size: var(--sb-font-size-sm);
+  color: #f28b82; /* red, legible on dark elevated surface */
+  line-height: var(--sb-line-height-base);
+}
+
+/* Lighter red for light theme */
+[data-theme="light"] .dialog__error {
+  color: #c5221f;
+}

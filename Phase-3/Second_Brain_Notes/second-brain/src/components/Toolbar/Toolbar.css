@@ -1,0 +1,207 @@
+/* Toolbar — horizontally holds formatting and utility controls */
+.toolbar__overflow {
+  position: relative;
+  display: flex;
+}
+.toolbar__overflow-menu {
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 140px;
+}
+.toolbar__menu-separator {
+  height: 1px;
+  background: var(--sb-border-subtle);
+  margin: 4px 0;
+}
+.toolbar__menu-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--sb-text-secondary);
+  padding: 4px 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 var(--sb-space-2);
+  background: var(--sb-surface-toolbar);
+  border-bottom: 1px solid var(--sb-border-subtle);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.toolbar__format-group,
+.toolbar__sb-group,
+.toolbar__util-group {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-1);
+}
+
+.toolbar__spacer {
+  flex: 1;
+}
+
+.toolbar__divider {
+  width: 1px;
+  height: 18px;
+  background: var(--sb-border-subtle);
+  margin: 0 var(--sb-space-1);
+}
+
+.toolbar__divider--group {
+  height: 24px;
+  background: var(--sb-border-default);
+  margin: 0 var(--sb-space-3);
+}
+
+/* ── Base Buttons ────────────────────────────────────────────── */
+
+.toolbar__btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  height: 28px;
+  padding: 0 var(--sb-space-4);
+  border-radius: var(--sb-radius-sm);
+  font-family: var(--sb-font-family);
+  font-size: var(--sb-font-size-sm);
+  font-weight: var(--sb-font-weight-medium);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--sb-transition-fast);
+}
+
+.toolbar__btn-icon,
+.toolbar__menu-icon {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.toolbar__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Primary Action (Save to Vault) ──────────────────────────── */
+.toolbar__btn--primary {
+  background: var(--sb-accent);
+  color: #ffffff; /* Explicit white text for strong contrast inside button */
+  border: 1px solid transparent;
+  font-weight: var(--sb-font-weight-semibold); /* Bolder */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15); /* More prominent */
+}
+
+/* In light mode, our accent is #005FB8 which has great white text contrast.
+   In dark mode, it's #60CDFF which has poor white text contrast, 
+   so we must use dark text in dark mode for accessibility */
+[data-theme='dark'] .toolbar__btn--primary {
+  color: #000000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.toolbar__btn--primary:hover:not(:disabled) {
+  background: var(--sb-accent-hover);
+}
+
+.toolbar__btn--primary:active:not(:disabled) {
+  background: var(--sb-accent-active);
+}
+
+/* ── Secondary Actions (Type, Tag) ───────────────────────── */
+
+.toolbar__btn--icon {
+  background: transparent;
+  color: var(--sb-text-primary);
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.toolbar__btn--icon:hover {
+  background: var(--sb-surface-hover);
+  border-color: var(--sb-border-subtle);
+}
+
+.toolbar__btn--icon:active {
+  background: var(--sb-surface-active);
+}
+
+.toolbar__btn--active {
+  background: var(--sb-surface-active);
+  border-color: var(--sb-border-subtle);
+}
+.toolbar__btn--secondary {
+  background: transparent;
+  color: var(--sb-text-primary);
+  border: 1px solid var(--sb-border-subtle);
+}
+
+.toolbar__btn--secondary:hover:not(:disabled) {
+  background: var(--sb-surface-hover);
+  border-color: var(--sb-border-default);
+}
+
+.toolbar__btn--secondary:active:not(:disabled) {
+  background: var(--sb-surface-active);
+}
+
+/* ── Type Picker Dropdown ────────────────────────────────── */
+.toolbar__type-picker {
+  position: relative;
+}
+
+.toolbar__menu {
+  position: absolute;
+  top: calc(100% + var(--sb-space-1));
+  left: 0;
+  width: 140px;
+  background: var(--sb-surface-elevated);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: var(--sb-space-1);
+  z-index: var(--sb-z-dropdown);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toolbar__menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: var(--sb-space-2) var(--sb-space-3);
+  font-family: var(--sb-font-family);
+  font-size: var(--sb-font-size-sm);
+  color: var(--sb-text-primary);
+  border-radius: var(--sb-radius-sm);
+  cursor: pointer;
+  transition: background var(--sb-transition-fast);
+}
+
+.toolbar__menu-item:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text-primary);
+}
+
+.toolbar__menu-item--active {
+  color: var(--sb-accent);
+  background: var(--sb-surface-hover);
+}
+
+.toolbar__format-group--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}

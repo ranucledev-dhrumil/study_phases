@@ -1,0 +1,48 @@
+/* ============================================================
+   Second Brain — Global Base Styles
+   ============================================================ */
+
+html {
+  /* Solid fallback — prevents any see-through gaps if the app div
+     doesn't cover the full viewport (e.g. during React hydration). */
+  background: var(--sb-surface-app);
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background: transparent; /* inherits from html; App div covers it */
+  overflow: hidden;
+  font-family: var(--sb-font-family);
+  font-size: var(--sb-font-size-base);
+  font-weight: var(--sb-font-weight-regular);
+  line-height: var(--sb-line-height-base);
+  color: var(--sb-text-primary);
+}
+
+/* Remove scrollbar on the root — individual regions scroll internally */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sb-border-default);
+  border-radius: var(--sb-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-border-strong);
+}
+
+/* Focus ring — keep keyboard nav visible without browser default outline */
+:focus-visible {
+  outline: 2px solid var(--sb-accent);
+  outline-offset: 2px;
+  border-radius: var(--sb-radius-sm);
+}

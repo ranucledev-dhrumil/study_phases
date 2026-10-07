@@ -1,0 +1,14 @@
+﻿/* App shell — full-viewport flex column */
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  /*
+   * Semi-transparent so the Mica material applied by Rust
+   * bleeds through. On systems without Mica this resolves
+   * to a solid dark surface via the rgba fallback.
+   */
+  background: var(--sb-surface-app);
+  overflow: hidden;
+}

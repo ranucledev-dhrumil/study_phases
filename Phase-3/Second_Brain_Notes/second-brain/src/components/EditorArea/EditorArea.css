@@ -1,0 +1,129 @@
+/* EditorArea — main writing surface (CHANGE 02 base + CHANGE 05 textarea) */
+
+.editor-area {
+  flex: 1;
+  min-height: 0; /* critical: allows flex child to shrink below content size */
+  display: flex;
+  flex-direction: column;
+  background: var(--sb-surface-editor);
+  position: relative;
+  overflow-y: auto;
+}
+
+.editor-area__tiptap-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-area__tiptap-wrapper .tiptap {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+  outline: none;
+  background: transparent;
+  color: var(--sb-text-primary);
+  font-family: var(--sb-font-family);
+  /* font-size is controlled by style zoom on the wrapper */
+  line-height: var(--sb-line-height-relaxed);
+  padding: var(--sb-space-8) var(--sb-space-6);
+  box-sizing: border-box;
+  caret-color: var(--sb-accent);
+}
+
+.editor-area__tiptap-wrapper .tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--sb-text-muted);
+  pointer-events: none;
+  height: 0;
+}
+
+/* ── Rich Text Elements ──────────────────────────────────────────────────── */
+
+.editor-area__tiptap-wrapper .tiptap h1 {
+  font-size: 2em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.editor-area__tiptap-wrapper .tiptap h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.editor-area__tiptap-wrapper .tiptap h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.editor-area__tiptap-wrapper .tiptap ul,
+.editor-area__tiptap-wrapper .tiptap ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.editor-area__tiptap-wrapper .tiptap table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+.editor-area__tiptap-wrapper .tiptap th,
+.editor-area__tiptap-wrapper .tiptap td {
+  border: 1px solid var(--sb-border-default);
+  padding: 0.4em 0.8em;
+  text-align: left;
+}
+
+.editor-area__tiptap-wrapper .tiptap th {
+  background: var(--sb-surface-hover);
+}
+
+.editor-area__tiptap-wrapper .tiptap a {
+  color: var(--sb-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+
+.editor-area--empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-area__empty-hint {
+  color: var(--sb-text-secondary);
+  font-size: 14px;
+  text-align: center;
+}
+
+.editor-area__empty-hint strong {
+  color: var(--sb-text-primary);
+  font-weight: 600;
+}
+
+.editor-area__tiptap-wrapper .tiptap pre {
+  background: var(--sb-surface-hover);
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  border: 1px solid var(--sb-border-default);
+}
+.editor-area__tiptap-wrapper .tiptap code {
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 0.9em;
+}
+.editor-area__tiptap-wrapper .tiptap p code {
+  background: var(--sb-surface-hover);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}

@@ -71,6 +71,7 @@ desktop.ini
 
 # ─── Tauri / Rust build outputs ──────────────────────────
 src-tauri/target/
+target/
 portable_dist/
 
 # ─── Word / Office docs (training notes — tracked) ───────

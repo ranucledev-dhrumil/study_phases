@@ -1,0 +1,85 @@
+.tag-chip-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-2);
+  width: 100%;
+  position: relative;
+}
+
+.tag-chips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 28px;
+  padding: 4px;
+  background: var(--sb-surface-input);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-sm);
+  align-items: center;
+}
+
+.tag-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--sb-surface-elevated);
+  border: 1px solid var(--sb-border-subtle);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  color: var(--sb-text-primary);
+}
+
+.tag-chip__remove {
+  background: none;
+  border: none;
+  color: var(--sb-text-secondary);
+  cursor: pointer;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tag-chip__remove:hover {
+  background: var(--sb-bg-hover);
+  color: var(--sb-text-primary);
+}
+
+.tag-chip-input__input {
+  flex: 1;
+  min-width: 60px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--sb-text-primary);
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.tag-chip-input__suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  background: var(--sb-surface-elevated);
+  border: 1px solid var(--sb-border-default);
+  border-radius: var(--sb-radius-sm);
+  z-index: 1000;
+  box-shadow: 0 4px 12px var(--sb-shadow-color, rgba(0,0,0,0.1));
+}
+
+.tag-chip-input__suggestion-item {
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--sb-text-primary);
+}
+
+.tag-chip-input__suggestion-item:hover,
+.tag-chip-input__suggestion-item--active {
+  background: var(--sb-bg-hover);
+}

@@ -1,0 +1,1 @@
+ALTER TABLE app_settings ADD COLUMN editor_zoom INTEGER NOT NULL DEFAULT 100;

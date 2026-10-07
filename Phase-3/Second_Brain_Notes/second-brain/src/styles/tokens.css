@@ -1,0 +1,129 @@
+/* ============================================================
+   Second Brain — Design Tokens
+   Two themes: dark (default) and light (applied via data-theme="light")
+   Naming convention: --sb-{category}-{role}
+   ============================================================ */
+
+/* ─── Shared / Theme-invariant tokens ─────────────────────── */
+:root {
+  /* Spacing scale */
+  --sb-space-1:  4px;
+  --sb-space-2:  8px;
+  --sb-space-3:  12px;
+  --sb-space-4:  16px;
+  --sb-space-5:  24px;
+  --sb-space-6:  32px;
+  --sb-space-8:  48px;
+
+  /* Border radius (Windows 11 typically uses 4px for buttons, 8px for cards) */
+  --sb-radius-sm: 4px;
+  --sb-radius-md: 8px;
+  --sb-radius-lg: 12px;
+  --sb-radius-full: 9999px;
+
+  /* Typography (Segoe UI Variable matches Windows 11 native) */
+  --sb-font-family: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --sb-font-size-xs: 12px;
+  --sb-font-size-sm: 13px;
+  --sb-font-size-base: 14px;
+  --sb-font-size-lg: 16px;
+  --sb-font-size-xl: 20px;
+  --sb-font-size-2xl: 24px;
+  --sb-font-weight-regular: 400;
+  --sb-font-weight-medium: 500;
+  --sb-font-weight-semibold: 600;
+  --sb-font-weight-bold: 700;
+  --sb-line-height-tight: 1.25;
+  --sb-line-height-base: 1.5;
+  --sb-line-height-relaxed: 1.75;
+
+  /* Transitions */
+  --sb-transition-fast: 100ms ease;
+  --sb-transition-base: 150ms ease;
+
+  /* Z-index */
+  --sb-z-base: 0;
+  --sb-z-elevated: 10;
+  --sb-z-dropdown: 100;
+  --sb-z-modal: 200;
+
+  /* Standard Windows 11 destructive */
+  --sb-danger: #d73a49;
+  --sb-close-hover-bg: #C42B1C;
+}
+
+/* ─── Dark theme (default, or explicit data-theme="dark") ──────── */
+:root, [data-theme="dark"] {
+  /* Surfaces */
+  --sb-surface-app: #202020;
+  --sb-surface-titlebar: #1c1c1c;
+  --sb-surface-tabs: #181818;
+  --sb-surface-toolbar: #202020;
+  --sb-surface-editor: #202020;
+  --sb-surface-statusbar: #181818;
+  
+  --sb-surface-elevated: #2d2d2d;
+  --sb-surface-card: #282828;
+  --sb-surface-hover: rgba(255, 255, 255, 0.06);
+  --sb-surface-active: rgba(255, 255, 255, 0.09);
+
+  /* Borders */
+  --sb-border-subtle: rgba(255, 255, 255, 0.08);
+  --sb-border-default: rgba(255, 255, 255, 0.15);
+  --sb-border-strong: rgba(255, 255, 255, 0.25);
+
+  /* Text */
+  --sb-text-primary: #ffffff;
+  --sb-text-secondary: #cccccc;
+  --sb-text-muted: #999999;
+  --sb-text-inverse: #000000;
+
+  /* Tab state */
+  --sb-tab-active-bg: rgba(255, 255, 255, 0.08);
+  --sb-tab-hover-bg: rgba(255, 255, 255, 0.04);
+
+  /* Accent (Windows 11 dark mode blue) */
+  --sb-accent: #60CDFF;
+  --sb-accent-hover: #45b7ee;
+  --sb-accent-active: #2aa2d9;
+  --sb-accent-text: #000000;
+  --sb-dot: #60CDFF;
+}
+
+/* ─── Light theme ─────────────────────────────────────────── */
+[data-theme="light"] {
+  /* Surfaces */
+  --sb-surface-app: #f3f3f3;
+  --sb-surface-titlebar: #f3f3f3;
+  --sb-surface-tabs: #ececec;
+  --sb-surface-toolbar: #f3f3f3;
+  --sb-surface-editor: #f3f3f3;
+  --sb-surface-statusbar: #ececec;
+  
+  --sb-surface-elevated: #ffffff;
+  --sb-surface-card: #ffffff;
+  --sb-surface-hover: rgba(0, 0, 0, 0.04);
+  --sb-surface-active: rgba(0, 0, 0, 0.07);
+
+  /* Borders */
+  --sb-border-subtle: rgba(0, 0, 0, 0.06);
+  --sb-border-default: rgba(0, 0, 0, 0.15);
+  --sb-border-strong: rgba(0, 0, 0, 0.25);
+
+  /* Text */
+  --sb-text-primary: #1a1a1a;
+  --sb-text-secondary: #5a5a5a;
+  --sb-text-muted: #757575;
+  --sb-text-inverse: #ffffff;
+
+  /* Tab state */
+  --sb-tab-active-bg: rgba(0, 0, 0, 0.06);
+  --sb-tab-hover-bg: rgba(0, 0, 0, 0.03);
+
+  /* Accent (Windows 11 light mode blue) */
+  --sb-accent: #005FB8;
+  --sb-accent-hover: #004b93;
+  --sb-accent-active: #00366b;
+  --sb-accent-text: #ffffff;
+  --sb-dot: #005FB8;
+}

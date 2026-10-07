@@ -1,0 +1,89 @@
+/* StatusBar ------------------------------------------------- */
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+  padding: 0 var(--sb-space-3);
+  background: var(--sb-surface-statusbar);
+  border-top: 1px solid var(--sb-border-subtle);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.statusbar__left,
+.statusbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+}
+
+.statusbar__segment {
+  font-size: var(--sb-font-size-xs);
+  color: var(--sb-text-muted);
+  white-space: nowrap;
+}
+
+.statusbar__flash {
+  font-size: var(--sb-font-size-xs);
+  color: var(--sb-accent);
+  font-weight: var(--sb-font-weight-medium);
+  white-space: nowrap;
+  animation: statusbar-fade-in 0.2s ease-out;
+}
+
+@keyframes statusbar-fade-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.statusbar__error {
+  font-size: var(--sb-font-size-xs);
+  color: var(--sb-danger, #d73a49); /* fallback if not defined */
+  font-weight: var(--sb-font-weight-medium);
+  white-space: nowrap;
+  animation: statusbar-fade-in 0.2s ease-out;
+}
+
+.statusbar__divider {
+  width: 1px;
+  height: 12px;
+  background: var(--sb-border-subtle);
+  flex-shrink: 0;
+}
+
+/* ── Segmented View Switcher ──────────────────────────────── */
+.statusbar__switcher {
+  display: flex;
+  align-items: center;
+  background: var(--sb-surface-app);
+  border: 1px solid var(--sb-border-subtle);
+  border-radius: var(--sb-radius-full);
+  padding: 2px;
+  gap: 2px;
+}
+
+.statusbar__switch-btn {
+  background: transparent;
+  border: none;
+  font-size: 11px;
+  font-family: var(--sb-font-family);
+  font-weight: var(--sb-font-weight-medium);
+  color: var(--sb-text-muted);
+  padding: 2px 10px;
+  border-radius: var(--sb-radius-full);
+  cursor: pointer;
+  line-height: 1.4;
+  transition: all var(--sb-transition-fast);
+}
+
+.statusbar__switch-btn:hover {
+  color: var(--sb-text-primary);
+  background: var(--sb-surface-hover);
+}
+
+.statusbar__switch-btn--active {
+  background: var(--sb-surface-elevated);
+  color: var(--sb-text-primary) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

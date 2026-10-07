@@ -1,0 +1,9 @@
+{
+  "name": "com.secondbrain.host",
+  "description": "Second Brain Native Messaging Host",
+  "path": "%APPDATA%\\SecondBrain\\second-brain-host.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://nlkpiaianojgfobdnafcfhcjidihoomo/"
+  ]
+}
