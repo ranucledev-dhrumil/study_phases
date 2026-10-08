@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Query, HTTPException, Depends, BackgroundTasks
+from fastapi import APIRouter, Query, Depends, BackgroundTasks
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
+from app.deps import get_owned_application_detail
 from app.crud import create_audit_log_task
-from app.deps import get_application_or_404
 from app.models import Application
 from app.schemas.applications import (
     ApplicationCreate,
@@ -69,7 +69,7 @@ async def get_stats(db: DbSession, current_user: CurrentUser):
 
 @router.get("/{application_id}", response_model=ApplicationDetail,
             summary="Get an application with its notes", responses=NOT_FOUND)
-async def get_application(application: Application = Depends(get_owned_application),):
+async def get_application(application: Application = Depends(get_owned_application_detail)):
     return application
 
 

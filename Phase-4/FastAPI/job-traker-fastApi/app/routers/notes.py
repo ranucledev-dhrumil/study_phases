@@ -23,8 +23,8 @@ router = APIRouter(
 async def post_note(
     db: DbSession,
     background_tasks: BackgroundTasks,
-    application: Application = Depends(get_owned_application),
     payload: NoteCreate = None,
+    application: Application = Depends(get_owned_application),
 ):
     response = await create_note(db, application.id, payload)
     background_tasks.add_task(

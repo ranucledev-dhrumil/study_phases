@@ -9,6 +9,8 @@ from app.routers.debug import router as debug_router
 from app.routers.auth import router as auth_router
 from app.routers.audit import router as audit_router
 from app.config import settings
+import httpx
+from app.routers.checks import router as checks_router
 
 import logging
 import time
@@ -19,7 +21,9 @@ from fastapi.middleware.cors import CORSMiddleware
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    app.state.http = httpx.AsyncClient(timeout=settings.url_check_timeout)  # one shared client
     yield
+    await app.state.http.aclose()
     await engine.dispose()
 
 class ProcessTimeMiddleware(BaseHTTPMiddleware):
@@ -61,10 +65,15 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
 app = FastAPI(title="Job Application Tracker", version="0.1.0", lifespan=lifespan)
 
 logger = logging.getLogger("app.request")
+logger.setLevel(logging.INFO)
+if not logger.handlers:                 # without a handler, INFO is silently dropped
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter("%(asctime)s %(message)s"))
+    logger.addHandler(_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGIN,  # Reads from settings (e.g. ["http://localhost:3000"])
+    allow_origins=settings.cors_origin,  # Reads from settings (e.g. ["http://localhost:3000"])
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["Authorization", "Content-Type"],
     allow_credentials=False,
@@ -73,6 +82,7 @@ app.add_middleware(ProcessTimeMiddleware)
 app.add_middleware(RequestIDMiddleware)
 
 app.include_router(auth_router)
+app.include_router(checks_router)
 app.include_router(applications_router)
 app.include_router(audit_router)
 app.include_router(notes_router)

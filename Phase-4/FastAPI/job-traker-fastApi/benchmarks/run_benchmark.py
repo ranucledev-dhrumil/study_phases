@@ -24,7 +24,7 @@ async def measure_single_request(
 
 
 async def run_benchmark(endpoint: str, concurrency: int):
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=120) as client:
         headers = await get_auth_headers(client)
 
         t_start = time.perf_counter()

@@ -79,8 +79,8 @@ class User(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        default=datetime.utcnow,
+        DateTime(timezone=True), 
+        server_default=func.now(), 
         nullable=False,
     )
 
@@ -98,10 +98,7 @@ class AuditLog(Base):
 
     action: Mapped[str] = mapped_column(String, nullable=False)
 
-    application_id: Mapped[int | None] = mapped_column(
-        ForeignKey("applications.id", ondelete="SET NULL"),
-        nullable=True,
-    )
+    application_id: Mapped[int | None] = mapped_column(nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

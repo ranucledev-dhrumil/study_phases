@@ -1,6 +1,5 @@
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
 import logging
 
 from app.db import SessionLocal
@@ -79,15 +78,6 @@ async def get_stats(db: AsyncSession, owner_id: int):
 
     return stats
 
-async def get_application_detail(db: AsyncSession, application_id: int):
-    stmt = (
-        select(Application)
-        .where(Application.id == application_id)
-        .options(selectinload(Application.notes))
-    )
-
-    return await db.scalar(stmt)
-
 async def create_application(db: AsyncSession, applicationReceived: ApplicationCreate, owner_id: int):
     application = Application(
         owner_id=owner_id,
@@ -158,27 +148,13 @@ async def delete_note(db: AsyncSession, application_id: int, note_id: int):
     await db.commit()
     return True
 
-def create_audit_log_task(
+async def create_audit_log_task(
     user_id: int, action: str, application_id: int | None = None
 ):
-    """Executes after HTTP response is sent.
-
-    Opens its own isolated DB session.
-    """
-    # 1. Open an independent DB session (never reuse request session)
-    db = SessionLocal()
+    """Runs after the response, with its OWN session (the request's is closed)."""
     try:
-        # 2. Construct and save audit record
-        log_entry = AuditLog(
-            user_id=user_id, action=action, application_id=application_id
-        )
-        db.add(log_entry)
-        db.commit()
-    except Exception as exc:
-        # 3. Log exception without failing or bubbling up
-        db.rollback()
-        logger.exception("Failed to write audit log entry: %s", exc)
-    finally:
-        # 4. Always close the background session
-        db.close()
-
+        async with SessionLocal() as db:
+            db.add(AuditLog(user_id=user_id, action=action, application_id=application_id))
+            await db.commit()
+    except Exception:
+        logger.exception("Failed to write audit log entry")
