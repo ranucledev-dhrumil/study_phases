@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Query, Depends, BackgroundTasks
 
-from app.deps import get_application_or_404, get_owned_application
+from app.deps import get_owned_application
 from app.models import Application
 from app.schemas.notes import NoteCreate, NoteRead
 from app.db import DbSession
